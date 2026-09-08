@@ -108,17 +108,17 @@ def dashboard_summary(db: Session = Depends(get_db)):
 
     query = text(r"""
         WITH semua_asn AS (
-            SELECT umur::numeric AS usia, (CASE WHEN tmt_bup ~ '^\d{4}-\d{2}-\d{2}' THEN tmt_bup::date ELSE NULL END) AS tanggal_bup
+            SELECT umur::numeric AS usia, safe_to_date(tmt_bup) AS tanggal_bup
             FROM pns
 
             UNION ALL
 
-            SELECT usia::numeric AS usia, (CASE WHEN bup ~ '^\d{4}-\d{2}-\d{2}' THEN bup::date ELSE NULL END) AS tanggal_bup
+            SELECT usia::numeric AS usia, safe_to_date(bup) AS tanggal_bup
             FROM pppk_full
 
             UNION ALL
 
-            SELECT usia::numeric AS usia, (CASE WHEN tmt_bup ~ '^\d{4}-\d{2}-\d{2}' THEN tmt_bup::date ELSE NULL END) AS tanggal_bup
+            SELECT usia::numeric AS usia, safe_to_date(tmt_bup) AS tanggal_bup
             FROM pppk_pw
         )
 
@@ -393,21 +393,21 @@ def dashboard_pensiun(db: Session = Depends(get_db)):
         WITH semua_asn AS (
 
             SELECT
-                (CASE WHEN tmt_bup ~ '^\d{4}-\d{2}-\d{2}' THEN tmt_bup::date ELSE NULL END) AS tanggal_bup
+                safe_to_date(tmt_bup) AS tanggal_bup
             FROM pns
             WHERE tmt_bup IS NOT NULL
 
             UNION ALL
 
             SELECT
-                (CASE WHEN bup ~ '^\d{4}-\d{2}-\d{2}' THEN bup::date ELSE NULL END) AS tanggal_bup
+                safe_to_date(bup) AS tanggal_bup
             FROM pppk_full
             WHERE bup IS NOT NULL
 
             UNION ALL
 
             SELECT
-                (CASE WHEN tmt_bup ~ '^\d{4}-\d{2}-\d{2}' THEN tmt_bup::date ELSE NULL END) AS tanggal_bup
+                safe_to_date(tmt_bup) AS tanggal_bup
             FROM pppk_pw
             WHERE tmt_bup IS NOT NULL
         )
@@ -499,7 +499,7 @@ def dashboard_eselon_risk(db: Session = Depends(get_db)):
 
             SELECT
                 eselon,
-                (CASE WHEN tmt_bup ~ '^\d{4}-\d{2}-\d{2}' THEN tmt_bup::date ELSE NULL END) AS tanggal_bup
+                safe_to_date(tmt_bup) AS tanggal_bup
             FROM pns
             WHERE eselon IS NOT NULL
               AND tmt_bup IS NOT NULL

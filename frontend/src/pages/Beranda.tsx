@@ -126,7 +126,7 @@ const BerandaPage = ({ onNav }: { onNav: (id: string) => void }) => {
     return (
       <div className="p-6 flex flex-col items-center justify-center gap-3 min-h-[60vh]">
         <Loader2 size={28} className="animate-spin text-blue-500" />
-        <p className="text-sm text-gray-500">Memuat data dashboard dari server...</p>
+        <p className="text-sm text-gray-500">Memuat dashboard...</p>
       </div>
     );
   }
