@@ -152,7 +152,6 @@ export const QUICK_TOPICS = [
   "Berapa proyeksi pensiun 2027?",
   "OPD mana paling butuh rekrutmen?",
   "Berapa total ASN Jawa Timur?",
-  "Algoritma terbaik untuk SPK?",
   "OPD dengan risiko regenerasi tertinggi?",
 ];
 

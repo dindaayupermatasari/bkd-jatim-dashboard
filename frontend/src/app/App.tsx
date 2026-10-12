@@ -4,12 +4,13 @@ import {
   ChevronRight, ArrowRight, Shield, BarChart, Bot,
   FileText, ExternalLink, User, Menu, X, ChevronLeft,
   Users, Building2, Target, CalendarDays, Sparkles,
-  Clock, Phone, MapPin,
+  Clock, Phone, MapPin, ClipboardList,
 } from "lucide-react";
 import { SLIDES, C } from "../lib/constants";
 import { GRAD, useCountUp } from "../lib/ui";
 import BerandaPage   from "../pages/Beranda";
 import OPDPage       from "../pages/PerbandinganAntarOPD";
+import ABKPage       from "../pages/ABKPage";
 import PensiunPage   from "../pages/ProyeksiPensiunBUP";
 import SPKPage       from "../pages/SimulatorOptimasiBobot";
 import ChatbotPage   from "../pages/AsistenAI";
@@ -20,6 +21,7 @@ import KualitasPage  from "../pages/KualitasData";
 const NAV = [
   { id: "beranda",  label: "Beranda",                          icon: Home          },
   { id: "opd",      label: "Perbandingan Antar OPD",            icon: BarChart2     },
+  { id: "abk",      label: "Analisis Beban Kerja (ABK)",        icon: ClipboardList },
   { id: "pensiun",  label: "Proyeksi Pensiun (BUP)",            icon: Calendar      },
   { id: "spk",      label: "Simulator Optimasi Bobot Kriteria", icon: Sliders       },
   { id: "chatbot",  label: "Asisten AI",                        icon: MessageSquare },
@@ -29,6 +31,7 @@ const NAV = [
 const PAGES: Record<string, React.FC<any>> = {
   beranda:  BerandaPage,
   opd:      OPDPage,
+  abk:      ABKPage,
   pensiun:  PensiunPage,
   spk:      SPKPage,
   chatbot:  ChatbotPage,
